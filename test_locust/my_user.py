@@ -22,10 +22,10 @@ class MyUser(HttpUser):
         return 1
 
 
-def start_web_ui(env):
-    print(env)
-    web_ui = WebUI("0.0.0.0", 8089, env)
-    web_ui.start()
+# def start_web_ui(env):
+#    print(env)
+#    web_ui = WebUI("0.0.0.0", 8089, env)
+#    web_ui.start()
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
     env.create_local_runner()
 
     # Start the web UI in a separate thread
-    threading.Thread(target=start_web_ui, args=(env,), daemon=True).start()
+    #    threading.Thread(target=start_web_ui, args=(env,), daemon=True).start()
 
     # Start a greenlet that periodically outputs stats
     gevent.spawn(stats_printer(env.stats))
