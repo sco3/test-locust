@@ -21,4 +21,5 @@ dev-dependencies = [
     "pyre-check>=0.9.22",
     "pyright>=1.1.381",
     "pytype>=2024.9.13",
+    "pip>=24.2",
 ]
