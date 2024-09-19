@@ -1,8 +1,11 @@
+import threading
+
+import gevent
+from locust import HttpUser, TaskSet, task
 from locust.env import Environment
 from locust.log import setup_logging
 from locust.stats import stats_printer
-from locust import HttpUser, TaskSet, task
-import gevent
+from locust.web import WebUI
 
 
 class UserBehavior(TaskSet):
@@ -19,12 +22,21 @@ class MyUser(HttpUser):
         return 1
 
 
+def start_web_ui(env):
+    print(env)
+    web_ui = WebUI("0.0.0.0", 8089, env)
+    web_ui.start()
+
+
 def main():
     setup_logging("INFO", None)
 
     # Set up Locust Environment and Runner
     env = Environment(user_classes=[MyUser])
     env.create_local_runner()
+
+    # Start the web UI in a separate thread
+    threading.Thread(target=start_web_ui, args=(env,), daemon=True).start()
 
     # Start a greenlet that periodically outputs stats
     gevent.spawn(stats_printer(env.stats))
