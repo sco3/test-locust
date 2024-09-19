@@ -1,0 +1,24 @@
+[project]
+name = "test-locust"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "locust>=2.31.6",
+    "gevent>=24.2.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "black>=24.8.0",
+    "mypy>=1.11.2",
+    "pylint>=3.2.7",
+    "pyre-check>=0.9.22",
+    "pyright>=1.1.381",
+    "pytype>=2024.9.13",
+]
